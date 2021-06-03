@@ -85,14 +85,14 @@ Node<T>* BST<T>::DeleteFunction(Node<T>* node, T value)
 			delete node;
 			node = nullptr;
 		}
-		else if (node->left == nullptr) // 자식이 좌측 하나
+		else if (node->left == nullptr) // 자식이 우측 하나
 		{
 			if (node == root)
 				root = node->right;
 			node = node->right;
 			delete temp;
 		}
-		else if (node->right == nullptr) // 자식이 우측 하나
+		else if (node->right == nullptr) // 자식이 좌측 하나
 		{
 			if (node == root)
 				root = node->left;
@@ -103,6 +103,7 @@ Node<T>* BST<T>::DeleteFunction(Node<T>* node, T value)
 		{
 			temp = SearchLeftMax(node->left);
 			node->value = temp->value;
+			node->count = temp->count;
 			node->left = DeleteFunction(node->left, temp->value);
 		}
 	}
